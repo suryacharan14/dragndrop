@@ -1,1 +1,25 @@
-/* You can add global styles to this file, and also import other style files */
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-family: sans-serif;
+}
+
+.box{
+    width: 100%;
+    background-color: #ececec;
+    height: 100%;
+    padding: 16px;
+    box-sizing: border-box;
+}
+.feature{
+    background-color: black;
+    color: white;
+    padding: 10px;
+    border-radius: 50px;
+    margin: 10px;
+    font-size: 16px;
+    max-width: 150px;
+}

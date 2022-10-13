@@ -1,0 +1,6 @@
+<div class="box" (drop)="drop($event)" (dragover)="dragover($event)">
+    <h1>Features</h1>
+    <p>Drag features here to remove.</p>
+    <br>
+    <app-feature *ngFor="let feature of features | async" [feature]="feature"></app-feature>
+</div>
