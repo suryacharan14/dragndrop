@@ -5,3 +5,9 @@
     grid-template-columns: calc(20% - 5px) calc(80% - 5px);
     column-gap: 10px;
 }
+
+@media screen and (max-width: 500px) {
+    .flex{
+        grid-template-columns: calc(50% - 5px) calc(50% - 5px);
+    }
+}
