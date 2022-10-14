@@ -1,4 +1,4 @@
 <div class="flex">
-  <app-columns [features]="features" (removeFeature)="removeFeature($event)"></app-columns>
+  <app-columns [features]="features" [isMultiple]="isMultiple" (handleChangeMultiple)="changeIsMultiple($event)" (removeFeature)="removeFeature($event)"></app-columns>
   <app-target [features]="selected" (addFeature)="addFeature($event)" (removeFeature)="removeFeature($event)"></app-target>
 </div>

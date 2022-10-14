@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 export class TargetComponent implements OnInit {
   @Input() features: Observable<string[]> | undefined;
   @Output() addFeature = new EventEmitter<string>();
-  @Output() removeFeature= new EventEmitter<string>();
+  @Output() removeFeature= new EventEmitter<number>();
   constructor() { }
 
   ngOnInit(): void {
@@ -24,7 +24,7 @@ export class TargetComponent implements OnInit {
     event.preventDefault();
   }
 
-  remove(feature: string){
+  remove(feature: number){
     this.removeFeature.emit(feature);
   }
 

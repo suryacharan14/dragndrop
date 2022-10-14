@@ -8,7 +8,8 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class FeatureComponent implements OnInit {
   @Input() feature: string = "";
   @Input() showRemove = false;
-  @Output() removeFeature = new EventEmitter<string>();
+  @Output() removeFeature = new EventEmitter<number>();
+  @Input() index: number | undefined;
   constructor() { }
 
   ngOnInit(): void {
@@ -19,7 +20,9 @@ export class FeatureComponent implements OnInit {
   }
 
   onRemove(){
-    this.removeFeature.emit(this.feature);
+    if(this.index != undefined){
+      this.removeFeature.emit(this.index);
+    }
   }
 
 }

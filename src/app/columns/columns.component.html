@@ -2,5 +2,6 @@
     <h1>Features</h1>
     <p>Drag features here to remove.</p>
     <br>
+    <input type="checkbox" name="multiple" (change)="changeMultiple()"> Add Multiple
     <app-feature *ngFor="let feature of features | async" [feature]="feature"></app-feature>
 </div>

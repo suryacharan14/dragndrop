@@ -15,6 +15,7 @@ export class AppComponent implements OnInit {
     'Files Upload',
   ];
   private selectedFeatures : string[] = [];
+  isMultiple = false;
 
   ngOnInit() {
     this.sort();
@@ -33,16 +34,17 @@ export class AppComponent implements OnInit {
   }
 
   addFeature(feature: string){
-    if(this.selectedFeatures.includes(feature) || !this.unselectedFeatures.includes(feature)) return;
+    if(this.selectedFeatures.includes(feature) && !this.isMultiple) return;
     this.selectedFeatures.push(feature);
-    this.unselectedFeatures = this.unselectedFeatures.filter(e => e !== feature);
     this.sort();
   }
 
-  removeFeature(feature: string){
-    if(this.unselectedFeatures.includes(feature) || !this.selectedFeatures.includes(feature)) return;
-    this.unselectedFeatures.push(feature);
-    this.selectedFeatures = this.selectedFeatures.filter(e => e !== feature);
+  removeFeature(index: number){
+    this.selectedFeatures.splice(index, 1);
     this.sort();
+  }
+
+  changeIsMultiple(value: boolean){
+    this.isMultiple = value;
   }
 }

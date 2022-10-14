@@ -2,5 +2,5 @@
     <h1>Your application</h1>
     <p>Drag features here to add.</p>
     <br>
-    <app-feature *ngFor="let feature of features | async" (removeFeature)="remove($event)" [feature]="feature" [showRemove]="true"></app-feature>
+    <app-feature *ngFor="let feature of features | async; let i = index" [index]="i" (removeFeature)="remove($event)" [feature]="feature" [showRemove]="true"></app-feature>
 </div>

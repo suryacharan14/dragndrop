@@ -8,7 +8,9 @@ import { Observable } from 'rxjs';
 })
 export class ColumnsComponent implements OnInit {
   @Input() features: Observable<string[]> | undefined;
-  @Output() removeFeature = new EventEmitter<string>();
+  @Output() removeFeature = new EventEmitter<number>();
+  @Input() isMultiple = false;
+  @Output() handleChangeMultiple = new EventEmitter<boolean>();
   constructor() { }
 
   ngOnInit(): void {
@@ -21,6 +23,10 @@ export class ColumnsComponent implements OnInit {
 
   dragover(event: any){
     event.preventDefault();
+  }
+
+  changeMultiple(){
+    this.handleChangeMultiple.emit(!this.isMultiple);
   }
 
 }
