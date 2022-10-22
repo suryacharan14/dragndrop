@@ -17,9 +17,13 @@ body{
 .feature{
     background-color: black;
     color: white;
-    padding: 10px;
-    border-radius: 50px;
-    margin: 10px;
+    padding: 5px 10px;
+    margin: 5px;
     font-size: 16px;
-    max-width: 150px;
+    text-align: center;
+
+    &.disabled{
+        opacity: .5;
+        cursor: not-allowed;
+    }
 }

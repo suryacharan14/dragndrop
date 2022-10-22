@@ -1,5 +1,5 @@
 
-<div draggable="true" (dragstart)="drag($event)" class="feature">
-    {{feature}}
+<div [draggable]="!disabled" (dragstart)="drag($event)" [ngClass]="{'feature': true, 'disabled': disabled}">
+    {{feature.name}}
     <button *ngIf="showRemove" (click)="onRemove()">X</button>
 </div>

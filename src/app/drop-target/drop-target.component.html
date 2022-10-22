@@ -1,0 +1,7 @@
+<div
+  [ngClass]="{ droppable: true, active: hovered }"
+  (dragend)="dragend($event)"
+  (dragleave)="dragend($event)"
+  (drop)="drop($event)"
+  (dragover)="dragover($event)"
+></div>

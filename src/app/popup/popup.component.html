@@ -1,0 +1,21 @@
+<div class="popup" *ngIf="backend.openDialog">
+  <div class="content">
+    <div *ngIf="backend.dialogType == 'add'">
+        <h2>{{backend.dialogObj.name}}</h2>
+        <br>
+        <hr>
+        <br>
+        <app-cloud-field *ngFor="let field of backend.dialogObj.fields" [field]="field" [formGroup]="formGroup"></app-cloud-field>
+        <button class="btn" (click)="onClose('cancel')">Close</button>
+        <button class="btn" (click)="onClose('add')">Ok</button>
+    </div>
+    <div *ngIf="backend.dialogType == 'view'">
+        <h2>{{backend.dialogObj.name}}</h2>
+        <br>
+        <hr>
+        <br>
+        <p *ngFor="let field of getProperties(backend.dialogObj)">{{field}} : {{backend.dialogObj[field]}}</p>
+        <button class="btn" (click)="onClose('cancel')">Close</button>
+    </div>
+  </div>
+</div>

@@ -2,6 +2,17 @@
     <h1>Features</h1>
     <p>Drag features here to remove.</p>
     <br>
-    <input type="checkbox" name="multiple" (change)="changeMultiple()"> Add Multiple
-    <app-feature *ngFor="let feature of features | async" [feature]="feature"></app-feature>
+    <div class="center">
+        <button [ngClass]="{'tab-btn': true, 'active': currentTab === 'elements'}" (click)="changeTab('elements')">Elements</button>
+        <button [ngClass]="{'tab-btn': true, 'active': currentTab === 'functions'}" (click)="changeTab('functions')">Functions</button>
+    </div>
+    <br>
+    <div *ngIf="currentTab=='elements'" class="row">
+        <div><input type="checkbox" name="multiple" (change)="changeMultiple()"> Add Multiple</div>
+        <app-feature  *ngFor="let col of columns" [feature]="col"></app-feature>
+    </div>
+    <div *ngIf="currentTab=='functions'" class="row">
+        <app-feature  *ngFor="let func of functions" [feature]="func"></app-feature>
+    </div>
+    
 </div>

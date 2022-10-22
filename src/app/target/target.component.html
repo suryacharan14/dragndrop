@@ -2,5 +2,33 @@
     <h1>Your application</h1>
     <p>Drag features here to add.</p>
     <br>
-    <app-feature *ngFor="let feature of features | async; let i = index" [index]="i" (removeFeature)="remove($event)" [feature]="feature" [showRemove]="true"></app-feature>
+    <table>
+        <thead>
+            <th>#</th>
+            <th>Element</th>
+            <th>Source</th>
+            <th>Function</th>
+            <th>Delete</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let feature of elements | async; let i = index">
+                <td>{{i+1}}</td>
+                <td>{{feature.name}}</td>
+                <td>{{feature.source}}</td>
+                <td>
+                    <div *ngIf="feature.func == null">
+                        <app-drop-target [index]="i" (onDrop)="addFunction($event)"></app-drop-target>
+                    </div>
+                    <div *ngIf="feature.func">
+                        <div class="func-btn" (click)="viewFunction(feature.func)">{{feature.func.name}}
+                            <button class="func-remove-btn" (click)="removeFunction(i)">X</button>
+                        </div>
+                        
+                    </div>
+                </td>
+                <td><button class="delete-btn" (click)="remove(i)">Delete</button></td>
+            </tr>
+        </tbody>
+    </table>
+    <!-- <app-feature *ngFor="let feature of features | async; let i = index" [index]="i" (removeFeature)="remove($event)" [feature]="feature" [showRemove]="true"></app-feature> -->
 </div>
