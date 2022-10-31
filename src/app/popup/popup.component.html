@@ -1,4 +1,5 @@
 <div class="popup" *ngIf="backend.openDialog">
+  {{checkEdit()}}
   <div class="content">
     <div class="grid">
       <div class="left">
@@ -36,12 +37,21 @@
         <div class="function-box">
           <div class="title">Function</div>
           <div class="body">
-            <app-drop-target (onDrop)="onDrop($event)"></app-drop-target>
+            <app-drop-target
+              *ngIf="!function"
+              (onDrop)="onFunctionDrop($event)"
+            ></app-drop-target>
+            <div *ngIf="function" #ref class="row">
+              {{ function.name | functionname }}(<div class="row" *ngFor="let field of function.fields; let i = index"><div class="row" (drop)="onElementDrop($event)" (dragover)="dragover($event)" contenteditable="true">
+                    {{ field.id }}
+                  </div><span>{{ i < function.fields.length - 1 ? ", " : "" }}</span></div>)
+            </div>
           </div>
           <div class="actions">
             <button (click)="onClose('cancel')">Cancel</button>
-            <button>Validate</button>
-            <button>Add</button>
+            <button (click)="clearFunction()">Clear</button>
+            <button (click)="validate()">Validate</button>
+            <button [disabled]="!validated" (click)="apply()">Apply</button>
           </div>
         </div>
       </div>

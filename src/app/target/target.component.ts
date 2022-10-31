@@ -17,7 +17,7 @@ export class TargetComponent implements OnInit {
   formGroup = new FormGroup({});
 
   ngOnInit(): void {
-    this.elements = this.backend.table;
+    this.elements = this.backend.table$;
   }
 
   drop(event: any) {
@@ -38,14 +38,14 @@ export class TargetComponent implements OnInit {
     this.backend.removeFromTable(feature);
   }
 
-  addFunction(event: [number, string]) {
-    // console.log(event);
-    let data = JSON.parse(event[1]);
-    if (data.type == 'function') {
-      let index = event[0];
-      this.backend.addFunction(index, data);
-    }
-  }
+  // addFunction(event: [number, string]) {
+  //   // console.log(event);
+  //   let data = JSON.parse(event[1]);
+  //   if (data.type == 'function') {
+  //     let index = event[0];
+  //     this.backend.addFunction(index, data);
+  //   }
+  // }
 
   removeFunction(index: number){
     this.backend.removeFunction(index);
@@ -55,18 +55,18 @@ export class TargetComponent implements OnInit {
     return JSON.stringify(obj);
   }
 
-  viewFunction(func: any){
-    this.backend.dialogObj = func;
-    this.backend.dialogType = "view";
-    this.backend.openDialog = true;
+  addFunction(index: number){
+    this.backend.funcIndex = index;
+    this.backend.openDialogAs("add")
+  }
+
+  editFunction(index: number){
+    this.backend.funcIndex = index;
+    this.backend.openDialogAs("edit")
   }
 
   onChange(event: any){
     console.log(event)
-  }
-
-  test(event: any){
-    console.log(this.formGroup.value);
   }
 
 }

@@ -17,10 +17,11 @@
                 <td>{{feature.source}}</td>
                 <td>
                     <div *ngIf="feature.func">
-                        <button class="func-btn" (click)="viewFunction(feature.func)">Edit Function</button>
+                        {{feature.func | functiontotext}}
+                        <button class="func-btn" (click)="editFunction(i)">Edit Function</button>
                     </div>
                     <div *ngIf="!feature.func">
-                        <button class="func-btn" (click)="viewFunction(feature.func)">Add Function</button>
+                        <button class="func-btn" (click)="addFunction(i)">Add Function</button>
                     </div>
                     
                 </td>

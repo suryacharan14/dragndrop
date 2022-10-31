@@ -24,11 +24,11 @@ export class BackendService {
       name: 'Policy No',
       func: null,
       source: '',
-      id: 'pol-no',
+      id: 'pol_no',
     },
   ];
   private funcs: AppFunction[] = [
-    { type: 'function', name: 'Trim Spaces' },
+    { type: 'function', name: 'Trim Spaces', fields: [{ id: 'field' }] },
     {
       type: 'function',
       name: 'Date format',
@@ -47,7 +47,7 @@ export class BackendService {
         },
       ],
     },
-    { type: 'function', name: 'Numeric' },
+    { type: 'function', name: 'Numeric' , fields: [{ id: 'field' }]},
     {
       type: 'function',
       name: 'Extract City',
@@ -64,7 +64,7 @@ export class BackendService {
   private tble: any[] = [];
   dialogObj: any = null;
   dialogType: string = '';
-  private funcIndex = -1;
+  public funcIndex = -1;
   constructor() {}
 
   addToTable(el: any) {
@@ -88,8 +88,12 @@ export class BackendService {
     return this.funcs;
   }
 
-  get table() {
+  get table$() {
     return of(this.tble);
+  }
+
+  get table() {
+    return this.tble;
   }
 
   changeIsMultiple(): boolean {
@@ -99,27 +103,27 @@ export class BackendService {
 
   addFunction(index: number, func: any) {
     // console.log(Object.entries(func).filter((key, value) => !["type", "name"].includes(key[0])));
-    if(func.fields){
-      this.dialogObj = func;
-      this.funcIndex = index;
-      this.dialogType = "add";
-      this.openDialog = true;
-      return;
-    }
+    // if(func.fields){
+    //   this.dialogObj = func;
+    //   this.funcIndex = index;
+    //   this.dialogType = "add";
+    //   this.openDialog = true;
+    //   return;
+    // }
     this.tble[index].func = func;
   }
 
-  confirmAddFunction(func: any){
-    if(this.funcIndex < 0) return;
-    this.tble[this.funcIndex].func = func;
-    this.resetDialog();
-  }
+  // confirmAddFunction(func: any){
+  //   if(this.funcIndex < 0) return;
+  //   this.tble[this.funcIndex].func = func;
+  //   this.resetDialog();
+  // }
 
-  resetDialog(){
-    this.dialogObj = null;
-    this.funcIndex = -1;
-    this.dialogType = "";
-  }
+  // resetDialog(){
+  //   this.dialogObj = null;
+  //   this.funcIndex = -1;
+  //   this.dialogType = "";
+  // }
 
   removeFunction(index: number) {
     this.tble[index].func = null;
@@ -129,7 +133,12 @@ export class BackendService {
     return this.tble.some((t) => t.name === el.name);
   }
 
-  isAddingFunctionForIndex(index: number){
-    return this.funcIndex == index && this.dialogObj != null;
+  // isAddingFunctionForIndex(index: number){
+  //   return this.funcIndex == index && this.dialogObj != null;
+  // }
+
+  openDialogAs(event: string) {
+    this.openDialog = true;
+    this.dialogType = event;
   }
 }

@@ -9,6 +9,8 @@ import { FeatureComponent } from './feature/feature.component';
 import { DropTargetComponent } from './drop-target/drop-target.component';
 import { PopupComponent } from './popup/popup.component';
 import { CloudFieldComponent } from './cloud-field/cloud-field.component';
+import { FunctionnamePipe } from './functionname.pipe';
+import { FunctiontotextPipe } from './functiontotext.pipe';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,8 @@ import { CloudFieldComponent } from './cloud-field/cloud-field.component';
     DropTargetComponent,
     PopupComponent,
     CloudFieldComponent,
+    FunctionnamePipe,
+    FunctiontotextPipe,
   ],
   imports: [BrowserModule, ReactiveFormsModule],
   providers: [],
