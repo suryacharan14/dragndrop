@@ -16,15 +16,13 @@
                 <td>{{feature.name}}</td>
                 <td>{{feature.source}}</td>
                 <td>
-                    <div *ngIf="feature.func == null">
-                        <app-drop-target [index]="i" (onDrop)="addFunction($event)"></app-drop-target>
-                    </div>
                     <div *ngIf="feature.func">
-                        <div class="func-btn" (click)="viewFunction(feature.func)">{{feature.func.name}}
-                            <button class="func-remove-btn" (click)="removeFunction(i)">X</button>
-                        </div>
-                        
+                        <button class="func-btn" (click)="viewFunction(feature.func)">Edit Function</button>
                     </div>
+                    <div *ngIf="!feature.func">
+                        <button class="func-btn" (click)="viewFunction(feature.func)">Add Function</button>
+                    </div>
+                    
                 </td>
                 <td><button class="delete-btn" (click)="remove(i)">Delete</button></td>
             </tr>

@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { BackendService } from '../backend.service';
 
@@ -12,14 +13,15 @@ export class TargetComponent implements OnInit {
   @Output() addFeature = new EventEmitter<string>();
   @Output() removeFeature = new EventEmitter<number>();
   elements: Observable<any[]> | null = null;
-  constructor(private backend: BackendService) {}
+  constructor(public backend: BackendService) {}
+  formGroup = new FormGroup({});
 
   ngOnInit(): void {
     this.elements = this.backend.table;
   }
 
   drop(event: any) {
-    if (event.dataTransfer.types.includes('text/plain')) {
+    if (event.target.classList.contains('box') && event.dataTransfer.types.includes('text/plain')) {
       event.preventDefault();
       let data = JSON.parse(event.dataTransfer.getData('text/plain'));
       if (data.type == 'element') {
@@ -57,6 +59,14 @@ export class TargetComponent implements OnInit {
     this.backend.dialogObj = func;
     this.backend.dialogType = "view";
     this.backend.openDialog = true;
+  }
+
+  onChange(event: any){
+    console.log(event)
+  }
+
+  test(event: any){
+    console.log(this.formGroup.value);
   }
 
 }

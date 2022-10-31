@@ -1,7 +1,11 @@
 <div
-  [ngClass]="{ droppable: true, active: hovered }"
+  [ngClass]="{ droppable: true, active: true }" 
   (dragend)="dragend($event)"
   (dragleave)="dragend($event)"
   (drop)="drop($event)"
   (dragover)="dragover($event)"
-></div>
+>
+<span *ngIf="isSpanVisible">Drag & Drop Here</span>
+</div>
+
+<!-- hovered -->

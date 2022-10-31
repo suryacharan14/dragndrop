@@ -11,6 +11,7 @@ export class FeatureComponent implements OnInit {
   @Input() showRemove = false;
   @Output() removeFeature = new EventEmitter<number>();
   @Input() index: number | undefined;
+  @Input() canDisable = true;
   constructor(private backend: BackendService) {
    }
 
@@ -28,7 +29,7 @@ export class FeatureComponent implements OnInit {
   }
 
   get disabled(){
-    return this.backend.contains(this.feature) && !this.backend.isMultiple;
+    return this.canDisable && (this.backend.contains(this.feature) && !this.backend.isMultiple);
   }
 
 }

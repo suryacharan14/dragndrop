@@ -1,5 +1,5 @@
 .popup{
-    position: fixed;
+    position: absolute;
     left: 0;
     right: 0;
     top: 0;
@@ -11,11 +11,24 @@
 
     .content{
         background-color: white;
-        width: 40%;
-        height: 40vh;
+        width: 70%;
         border-radius: 5px;
         box-shadow: 0 10px 15px 0 rgba($color: #000000, $alpha: .3);
         padding: 16px;
+        position: relative;
+
+        .cancel{
+            background-color: rgb(255, 82, 82);
+            color: white;
+            border: none;
+            outline: none;
+            padding: 5px 10px ;
+            cursor: pointer;
+            border-radius: 50px;
+            position: absolute;
+            right: -10px;
+            top: -10px;
+        }
     }
 }
 
@@ -28,4 +41,60 @@
     border-radius: 2px;
     width: 60px;
     cursor: pointer;
+}
+
+.center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &.vertical{
+        flex-direction: column;
+    }
+}
+
+.row{
+    position: relative;
+    // display: inline-block;
+}
+
+
+.grid{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 30% 70%;
+}
+
+.inbox{
+    background-color: lightgrey;
+    padding: 10px;
+    border-radius: 5px;
+    height: 40vh;
+    overflow-y: scroll;
+}
+
+.function-box{
+    height: 100%;
+    margin-left: 10px;
+    padding: 10px;
+    box-sizing: border-box;
+
+    .title{
+        margin-bottom: 10px;
+    }
+
+    .body{
+        background-color: lightgrey;
+        height: 80%;
+        border-radius: 5px;
+    }
+
+    .actions{
+        margin: 10px 0;
+
+        button{
+            margin-right: 10px;
+            padding: 5px 10px;
+        }
+    }
 }

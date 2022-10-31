@@ -9,6 +9,7 @@ export class DropTargetComponent implements OnInit {
   @Output() onDrop = new EventEmitter<[number, string]>();
   @Input() index: number = -1;
   hovered = false;
+  @Input() isSpanVisible = true;
   constructor() { }
 
   ngOnInit(): void {

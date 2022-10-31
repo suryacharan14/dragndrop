@@ -1,12 +1,12 @@
 
 <div [formGroup]="formGroup" class="input" [ngSwitch]="field.type">
     <div class="full-width">
-        <label>{{field.label}}</label>
-        <br>
+        <!-- <label>{{field.label}}</label>
+        <br> -->
         <select *ngSwitchCase="'select'" [formControlName]="field.id">
             <option *ngFor="let option of field.options" [value]="option">{{option}}</option>
         </select>
-        <input *ngSwitchDefault autocomplete="off" [type]="field.type" matNativeControl matInput [name]="field.id" [formControlName]="field.id">
+        <input [placeholder]="field.label" *ngSwitchDefault autocomplete="off" [type]="field.type" matNativeControl matInput [name]="field.id" [formControlName]="field.id">
         <div *ngIf="formControlNode?.touched && formControlNode?.errors" class="error">
             <i *ngIf="formControlNode?.errors?.['required']">{{field.label}} is required</i>
             <i *ngIf="formControlNode?.errors?.['minlength']">Min length should be {{formControlNode?.errors?.['minlength']['requiredLength']}}</i>

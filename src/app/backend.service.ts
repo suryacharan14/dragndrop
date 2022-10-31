@@ -118,6 +118,7 @@ export class BackendService {
   resetDialog(){
     this.dialogObj = null;
     this.funcIndex = -1;
+    this.dialogType = "";
   }
 
   removeFunction(index: number) {
@@ -126,5 +127,9 @@ export class BackendService {
 
   contains(el: any) {
     return this.tble.some((t) => t.name === el.name);
+  }
+
+  isAddingFunctionForIndex(index: number){
+    return this.funcIndex == index && this.dialogObj != null;
   }
 }

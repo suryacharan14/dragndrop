@@ -11,6 +11,7 @@ import { BackendService } from '../backend.service';
 export class PopupComponent implements OnInit {
   show: any;
   formGroup = new FormGroup({});
+  currentTab = "functions";
   constructor(public backend: BackendService) {
    }
 
@@ -40,11 +41,19 @@ export class PopupComponent implements OnInit {
     this.backend.confirmAddFunction(value);
     this.backend.openDialog = false;
     this.formGroup = new FormGroup({});
-    console.log(this.backend.table);
   }
 
   getProperties(func: object){
     return Object.keys(func).filter(key => key != 'name' && key != 'type');
+  }
+
+  onDrop(event: any){
+    // this.backend.addFunction(event[0], JSON.parse(event[1]))
+    console.log(event)
+  }
+
+  changeTab(tab: string){
+    this.currentTab = tab;
   }
 
 
