@@ -36,15 +36,17 @@
       <div class="right">
         <div class="function-box">
           <div class="title">Function</div>
-          <div class="body">
-            <app-drop-target
+          <div class="body" (dragover)="dragover($event)" (drop)="onFunctionDrop($event)">
+            <!-- <app-drop-target
               *ngIf="!function"
               (onDrop)="onFunctionDrop($event)"
-            ></app-drop-target>
+            ></app-drop-target> -->
             <div *ngIf="function" #ref class="row">
-              {{ function.name | functionname }}(<div class="row" *ngFor="let field of function.fields; let i = index"><div class="row" (drop)="onElementDrop($event)" (dragover)="dragover($event)" contenteditable="true">
-                    {{ field.id }}
-                  </div><span>{{ i < function.fields.length - 1 ? ", " : "" }}</span></div>)
+              <div class="row" *ngFor="let func of function; let x = index;">
+                {{ func.name | functionname }}(<div class="row" *ngFor="let field of func.fields; let i = index"><div class="row" (drop)="onElementDrop($event)" (dragover)="dragover($event)" contenteditable="true">
+                  {{ field.id }}
+                </div><span>{{ i < func.fields.length - 1 ? ", " : "" }}</span></div>)<span *ngIf="x < function.length-1"> AND </span><div class="row" *ngIf="x < function.length-1"> </div>
+              </div>
             </div>
           </div>
           <div class="actions">

@@ -55,12 +55,16 @@ export class PopupComponent implements OnInit {
 
   onFunctionDrop(event: any){
     // this.backend.addFunction(event[0], JSON.parse(event[1]))
-    let func = JSON.parse(event[1]);
+    let func = JSON.parse(event.dataTransfer.getData("text/plain"));
     if(func.type != "function"){
       return;
     }
     this.validated = false;
-    this.function = func;
+    if(this.function == null){
+      this.function = [func];
+    }else{
+      this.function.push(func);
+    }
   }
 
   changeTab(tab: string){
@@ -84,13 +88,16 @@ export class PopupComponent implements OnInit {
 
   validate(){
     if(this.ref.nativeElement.innerText){
+      let validation = true;
       let text = this.ref.nativeElement.innerText
-      let args = text.split("(")[1].split(")")[0]
-      if(!args){
-        this.validated = true;
-        return;
-      }
-      let validation = args.split(",").every((a: string) => (a.startsWith("\"") && a.endsWith("\"")) || this.backend.columns.find((c: AppElement) => c.id == a))
+      text.split(" AND ").map((txt: string) => {
+        let args = txt.split("(")[1].split(")")[0]
+        if(!args){
+          this.validated = true;
+          return;
+        }
+        validation = validation && args.split(",").every((a: string) => (a.startsWith("\"") && a.endsWith("\"")) || this.backend.columns.find((c: AppElement) => c.id == a))
+      })
       this.validated = validation;
     }
   }
@@ -103,9 +110,13 @@ export class PopupComponent implements OnInit {
 
   apply(){
     let text = this.ref.nativeElement.innerText
-    let args = text.split("(")[1].split(")")[0]
-    if(args){
-      this.function.fields = args.split(",").map((a: string) => ({id: a}))
+    let i = 0;
+    for(let txt of text.split(" AND ")){
+      let args = txt.split("(")[1].split(")")[0]
+      if(args){
+        this.function[i].fields = args.split(",").map((a: string) => ({id: a}))
+      }
+      i++;
     }
     this.backend.addFunction(this.backend.funcIndex, this.function);
     this.backend.openDialog = false;
