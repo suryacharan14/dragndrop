@@ -28,11 +28,14 @@ export class DropCellComponent implements OnInit {
       let data = JSON.parse(eventData);
       if(data.type == "element"){
         event.target.innerText = data.id;
+        let argIndex = event.target.dataset["argIndex"]
+        if(argIndex){
+          this.function.fields[argIndex] = {id: data.id};
+        }
       }
       if(data.type == "function"){
-        let functionIndex = event.target.dataset["functionIndex"];
         let argIndex = event.target.dataset["argIndex"];
-        if(functionIndex && argIndex){
+        if(argIndex){
           this.function.fields[argIndex] = JSON.parse(eventData);
         }
       }
