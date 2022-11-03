@@ -11,6 +11,7 @@ import { PopupComponent } from './popup/popup.component';
 import { CloudFieldComponent } from './cloud-field/cloud-field.component';
 import { FunctionnamePipe } from './functionname.pipe';
 import { FunctiontotextPipe } from './functiontotext.pipe';
+import { DropCellComponent } from './drop-cell/drop-cell.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { FunctiontotextPipe } from './functiontotext.pipe';
     CloudFieldComponent,
     FunctionnamePipe,
     FunctiontotextPipe,
+    DropCellComponent,
   ],
   imports: [BrowserModule, ReactiveFormsModule],
   providers: [],

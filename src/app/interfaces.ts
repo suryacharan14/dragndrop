@@ -9,6 +9,7 @@ export interface AppElement {
 export interface AppFunction{
     type: string,
     name: string,
+    noOfArguments?: number,
     fields?: any[],
 }
 

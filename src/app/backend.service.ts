@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
-import { AppElement, AppFunction } from './element';
+import { AppElement, AppFunction } from './interfaces';
 
 @Injectable({
   providedIn: 'root',
@@ -28,10 +28,11 @@ export class BackendService {
     },
   ];
   private funcs: AppFunction[] = [
-    { type: 'function', name: 'Trim Spaces', fields: [{ id: 'field' }] },
+    { type: 'function', name: 'Trim Spaces',noOfArguments: 1, fields: [{ id: 'field' }] },
     {
       type: 'function',
       name: 'Date format',
+      noOfArguments: 2,
       fields: [
         {
           id: 'before',
@@ -47,10 +48,11 @@ export class BackendService {
         },
       ],
     },
-    { type: 'function', name: 'Numeric' , fields: [{ id: 'field' }]},
+    { type: 'function', name: 'Numeric' , noOfArguments: 1, fields: [{ id: 'field' }]},
     {
       type: 'function',
       name: 'Extract City',
+      noOfArguments: 2,
       fields: [
         {
           id: 'format',
@@ -101,7 +103,7 @@ export class BackendService {
     return this.isMultiple;
   }
 
-  addFunction(index: number, func: any) {
+  addFunction(index: number, func: any, funcText: any) {
     // console.log(Object.entries(func).filter((key, value) => !["type", "name"].includes(key[0])));
     // if(func.fields){
     //   this.dialogObj = func;
@@ -111,6 +113,7 @@ export class BackendService {
     //   return;
     // }
     this.tble[index].func = func;
+    this.tble[index].funcText = funcText;
   }
 
   // confirmAddFunction(func: any){

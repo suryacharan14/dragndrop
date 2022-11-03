@@ -17,7 +17,7 @@
                 <td>{{feature.source}}</td>
                 <td>
                     <div *ngIf="feature.func">
-                        {{feature.func | functiontotext}}
+                        {{feature.funcText}}
                         <button class="func-btn" (click)="editFunction(i)">Edit Function</button>
                     </div>
                     <div *ngIf="!feature.func">

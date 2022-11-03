@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CloudForm } from '../element';
+import { CloudForm } from '../interfaces';
 
 @Component({
   selector: 'app-cloud-field',

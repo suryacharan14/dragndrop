@@ -1,0 +1,6 @@
+<div class="row">{{function.name | functionname}}(<div class="row" *ngFor="let field of function.fields; let i = index"><div class="row arg" (drop)="onElementDrop($event)" (dragover)="dragover($event)" contenteditable="true">
+    <!-- {{field.type != "function" ? field.id : field.name | functionname}} -->
+    <span #ref attr.data-function-index="{{functionIndex}}" attr.data-arg-index="{{i}}" class="arg" *ngIf="field.id">{{field.id}}</span>
+    <app-drop-cell [function]="function.fields[i]" *ngIf="field.type == 'function'" [functionIndex]="functionIndex"></app-drop-cell>
+    <!-- <span attr.data-function-index="{{functionIndex}}" attr.data-arg-index="{{i}}" class="arg" *ngIf="field.type == 'function'">{{field.name | functionname}}</span> -->
+  </div><span>{{ i < function.fields.length - 1 ? ", " : "" }}</span></div>)</div>
